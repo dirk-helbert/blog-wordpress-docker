@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  db:
+    image: 'mysql:8.0'
+    ports:
+      - '33060:3306'
+    volumes:
+      - './data/mysql:/var/lib/mysql'
+    environment:
+      MYSQL_ROOT_PASSWORD: cMZhxBgtzKqMcCek
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: tfmHafL4Bf3RQ4Zz
+
+  wordpress:
+    image: 'wordpress:6.0.1'
+    ports:
+      - '8080:80'
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: tfmHafL4Bf3RQ4Zz
+      WORDPRESS_DB_NAME: wordpress
+    volumes:
+      - "./wordpress:/var/www/html"
+      - "./plugins:/var/www/html/wp-content/plugins"
+      - "./themes:/var/www/html/wp-content/themes"
